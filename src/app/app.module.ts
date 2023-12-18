@@ -17,6 +17,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { CartComponent } from './components/cart/cart.component';
 import { CartService } from './services/cart.service';
 import {MatIconModule} from '@angular/material/icon'
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {MatIconModule} from '@angular/material/icon'
     ProductsComponent,
     ProductsDetailsComponent,
     ContactComponent,
-    CartComponent
+    CartComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserAnimationsModule,
