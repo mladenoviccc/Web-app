@@ -1,0 +1,20 @@
+<div class="topnav">
+  <a class="active" [routerLink]="['/home']">Home</a>
+  <a class="active" [routerLink]="['/products']">Products</a>
+  <a class="active" [routerLink]="['/contact']">Contact</a>
+  <a class="active" [routerLink]="['/cart']">
+    <mat-icon [routerLink]="['/cart']">add_shopping_cart</mat-icon>
+    <span class="badge">{{ totalQuantity }}</span>
+  </a>
+  <div class="search-container">
+    <form action="/action_page.php">
+      <input
+        type="text"
+        placeholder="Search.."
+        [(ngModel)]="enterSearchValue"
+        name="search"
+      />
+      <button (click)="emitSearchValue()" type="search">Search</button>
+    </form>
+  </div>
+</div>

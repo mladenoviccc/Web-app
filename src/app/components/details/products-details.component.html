@@ -1,0 +1,53 @@
+<div class="content">
+  <h2 class="header">{{ product.title }}</h2>
+
+  <div class="wrapper">
+    <div class="property-image">
+      <img class="img" [src]="product.thumbnail" />
+    </div>
+
+    <div class="property">
+      <div class="row">
+        <div class="col-md-2">{{ product.brand }}</div>
+      </div>
+      <div class="col-md-4">
+        {{ product.price | currency : "USD" : "symbol" }}
+      </div>
+      <div class="row">
+        <div class="col-md-3">{{ product.description }}</div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">Category: {{ product.category }}</div>
+      </div>
+      <div *ngIf="showMessage">
+        <p class="message">{{ message }}</p>
+      </div>
+      <div class="example-button-row">
+        <button
+          mat-raised-button
+          color="primary"
+          class="btn-1"
+          (click)="calculateDiscount()"
+        >
+          Discount
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          class="btn-2"
+          (click)="calculateOriginalPrice()"
+        >
+          Original Price
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          class="btn-3"
+          (click)="addToCart()"
+        >
+          Add To Cart
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

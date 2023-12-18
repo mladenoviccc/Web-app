@@ -1,0 +1,25 @@
+<div class="dropdown">
+  <button class="dropbtn">Filter By:</button>
+  <div class="dropdown-content">
+    <a (click)="sortByLowToHigh()">Low to high</a>
+    <a (click)="sortByHighToLow()">High to low</a>
+    <a (click)="sortAlphabetically()">Alphabetically</a>
+  </div>
+</div>
+<div class="wraper">
+  <div *ngIf="showNoResults">No results found</div>
+
+  <div class="grid" *ngIf="!showNoResults">
+    <div class="card" *ngFor="let product of products">
+      <mat-card class="example-card" (click)="navigate(product.id)">
+        <mat-card-header>
+          <mat-card-title>{{ product.title }}</mat-card-title>
+        </mat-card-header>
+        <img class="image" mat-card-image [src]="product.thumbnail" />
+        <mat-card-content>
+          <p>{{ product.description }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

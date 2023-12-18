@@ -1,0 +1,80 @@
+<div class="wrapper">
+  <div class="container">
+    <h2 class="title">Contact us</h2>
+    <form novalidate (ngSubmit)="save()" [formGroup]="contactForm">
+      <label for="fname">First Name</label>
+      <input
+        formControlName="firstName"
+        [ngClass]="{
+          'is-invalid':
+            (contactForm.get('firstName')?.touched ||
+              contactForm.get('firstName')?.dirty) &&
+            !contactForm.get('firstName')?.valid
+        }"
+        type="text"
+        id="fname"
+        name="firstname"
+        placeholder="Your name..."
+      />
+
+      <label for="lname">Last Name</label>
+      <input
+        formControlName="lastName"
+        [ngClass]="{
+          'is-invalid':
+            (contactForm.get('lastName')?.touched ||
+              contactForm.get('lastName')?.dirty) &&
+            !contactForm.get('lastName')?.valid
+        }"
+        type="text"
+        id="lname"
+        name="lastname"
+        placeholder="Your email..."
+      />
+
+      <label for="lname">Email</label>
+      <input
+        formControlName="email"
+        [ngClass]="{
+          'is-invalid':
+            (contactForm.get('email')?.touched ||
+              contactForm.get('email')?.dirty) &&
+            !contactForm.get('email')?.valid
+        }"
+        type="text"
+        id="email"
+        name="email"
+        placeholder="Your last name..."
+      />
+
+      <label for="subject">Subject</label>
+      <textarea
+        formControlName="subject"
+        [ngClass]="{
+          'is-invalid':
+            (contactForm.get('subject')?.touched ||
+              contactForm.get('subject')?.dirty) &&
+            !contactForm.get('subject')?.valid
+        }"
+        id="subject"
+        name="subject"
+        placeholder="Write something..."
+        style="height: 200px"
+      ></textarea>
+
+      <div class="example-button-row">
+        <button
+          mat-raised-button
+          color="primary"
+          class="btn-1"
+          (click)="save()"
+        >
+          Submit
+        </button>
+      </div>
+      <div *ngIf="showSuccessMessage" class="successMessage">
+        Your message has been submitted succesfully!
+      </div>
+    </form>
+  </div>
+</div>

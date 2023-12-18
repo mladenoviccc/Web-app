@@ -1,0 +1,65 @@
+.img {
+  width: 600px;
+  margin: auto;
+  display: block;
+  padding-bottom: 20px;
+}
+
+.header {
+  text-align: center;
+  font-size: xx-large;
+  padding-bottom: 50px;
+  font-weight: bold;
+}
+
+
+.content {
+  padding-top: 100px;
+}
+
+.col-md-2 {
+  font-size: xx-large;
+  padding-bottom: 25px;
+  padding-top: 20px;
+}
+
+.col-md-4 {
+  font-weight: bold;
+  padding-bottom: 10px;
+  font-size: x-large;
+}
+
+.col-md-3 {
+  font-size: larger;
+  padding-bottom: 10px;
+}
+
+.row {
+  padding-bottom: 3px;
+}
+
+.example-button-row {
+  padding-top: 50px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.property {
+  margin-left: 50px;
+}
+
+.btn-1 {
+  margin-right: 50px;
+}
+
+.btn-3 {
+  margin-left: 50px;
+}
+
+.message{
+  color: red;
+}

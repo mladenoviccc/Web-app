@@ -1,0 +1,26 @@
+<div class="wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cartItems">
+        <td><img [src]="item.thumbnail" alt="Product Image" /></td>
+        <td>{{ item.title }}</td>
+        <td>{{ item.price * item.quantity | currency : "USD" : "symbol" }}</td>
+        <td>{{ item.quantity }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="chekcout">
+  <button mat-raised-button color="primary" class="btn-3">Checkout</button>
+  <span class="price"
+    >Total price: {{ getTotalPrice() | currency : "USD" : "symbol" }}</span
+  >
+</div>
