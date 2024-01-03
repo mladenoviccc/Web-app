@@ -1,36 +1,37 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-@Component ({
-  templateUrl: "./contact.component.html",
-  styleUrls: ["./contact.component.css"]
+@Component({
+  templateUrl: 'contact.component.html',
+  styleUrls: ['contact.component.css']
 })
-export class ContactComponent implements OnInit{
-  processing = false;
+export class ContactComponent implements OnInit {
   contactForm: FormGroup;
-  showSuccessMessage = false
+  showSuccessMessage: boolean = false;
 
-  constructor (private formBuilder: FormBuilder) { }
+  constructor(private fb: FormBuilder) { }
 
-  ngOnInit(): void {
-    this.contactForm = this.formBuilder.group({
-      firstName: ['', Validators.required, Validators.minLength(3)],
-      lastName: ['', Validators.required, Validators.maxLength(20)],
-      email: ['', Validators.required],
-      subject: ['', Validators.required, Validators.maxLength(200)]
-    })
+  ngOnInit() {
+    this.buildForm();
   }
 
-  save() {
-    this.showSuccessMessage = true
-    this.processing = true;
-    setTimeout(() => {
-      this.contactForm.reset();
-      this.processing = false;
+  buildForm() {
+    this.contactForm = this.fb.group({
+      firstName: ['', [Validators.required, Validators.minLength(3)]],
+      lastName: ['', [Validators.required, Validators.maxLength(50)]],
+      email: ['', [Validators.required, Validators.email]],
+      subject: ['', [Validators.required, Validators.maxLength(200)]]
+    });
+  }
+
+  onSubmit() {
+    if (this.contactForm.valid) {
+      console.log('Form submitted:', this.contactForm.value);
       this.showSuccessMessage = true;
+      this.contactForm.reset();
       setTimeout(() => {
         this.showSuccessMessage = false;
-      }, 2000)
-    }, 2000);
+      }, 3000);
+    }
   }
 }

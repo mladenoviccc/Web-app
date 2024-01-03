@@ -1,80 +1,35 @@
-<div class="wrapper">
-  <div class="container">
-    <h2 class="title">Contact us</h2>
-    <form novalidate (ngSubmit)="save()" [formGroup]="contactForm">
-      <label for="fname">First Name</label>
-      <input
-        formControlName="firstName"
-        [ngClass]="{
-          'is-invalid':
-            (contactForm.get('firstName')?.touched ||
-              contactForm.get('firstName')?.dirty) &&
-            !contactForm.get('firstName')?.valid
-        }"
-        type="text"
-        id="fname"
-        name="firstname"
-        placeholder="Your name..."
-      />
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+  <h2 class="contact">Contact</h2>
+  <mat-form-field>
+    <input matInput placeholder="First name" formControlName="firstName" />
+    <mat-error *ngIf="contactForm.get('firstName')?.hasError('required')">First Name is required</mat-error>
+  </mat-form-field>
 
-      <label for="lname">Last Name</label>
-      <input
-        formControlName="lastName"
-        [ngClass]="{
-          'is-invalid':
-            (contactForm.get('lastName')?.touched ||
-              contactForm.get('lastName')?.dirty) &&
-            !contactForm.get('lastName')?.valid
-        }"
-        type="text"
-        id="lname"
-        name="lastname"
-        placeholder="Your email..."
-      />
+  <mat-form-field>
+    <input matInput placeholder="Last name" formControlName="lastName" />
+    <mat-error *ngIf="contactForm.get('lastName')?.hasError('required')">Last Name is required</mat-error>
+  </mat-form-field>
 
-      <label for="lname">Email</label>
-      <input
-        formControlName="email"
-        [ngClass]="{
-          'is-invalid':
-            (contactForm.get('email')?.touched ||
-              contactForm.get('email')?.dirty) &&
-            !contactForm.get('email')?.valid
-        }"
-        type="text"
-        id="email"
-        name="email"
-        placeholder="Your last name..."
-      />
+  <mat-form-field>
+    <input matInput placeholder="Email" formControlName="email" />
+    <mat-error *ngIf="contactForm.get('email')?.hasError('required')">Email is required</mat-error>
+    <mat-error *ngIf="contactForm.get('email')?.hasError('email')">Invalid email address</mat-error>
+  </mat-form-field>
 
-      <label for="subject">Subject</label>
-      <textarea
-        formControlName="subject"
-        [ngClass]="{
-          'is-invalid':
-            (contactForm.get('subject')?.touched ||
-              contactForm.get('subject')?.dirty) &&
-            !contactForm.get('subject')?.valid
-        }"
-        id="subject"
-        name="subject"
-        placeholder="Write something..."
-        style="height: 200px"
-      ></textarea>
+  <mat-form-field>
+    <input matInput placeholder="Subject" formControlName="subject" />
+    <mat-error *ngIf="contactForm.get('subject')?.hasError('required')">Subject is required</mat-error>
+  </mat-form-field>
 
-      <div class="example-button-row">
-        <button
-          mat-raised-button
-          color="primary"
-          class="btn-1"
-          (click)="save()"
-        >
-          Submit
-        </button>
-      </div>
-      <div *ngIf="showSuccessMessage" class="successMessage">
-        Your message has been submitted succesfully!
-      </div>
-    </form>
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="!contactForm.valid"
+  >
+    Submit
+  </button>
+  <div *ngIf="showSuccessMessage" class="success-message">
+    Your message has been submitted.
   </div>
-</div>
+</form>

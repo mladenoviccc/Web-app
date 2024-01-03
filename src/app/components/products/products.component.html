@@ -9,8 +9,8 @@
 <div class="wraper">
   <div *ngIf="showNoResults">No results found</div>
 
-  <div class="grid" *ngIf="!showNoResults">
-    <div class="card" *ngFor="let product of products">
+  <div class="grid" *ngIf="!showNoResults  && products.length > 0">
+    <div class="card" *ngFor="let product of productsPage">
       <mat-card class="example-card" (click)="navigate(product.id)">
         <mat-card-header>
           <mat-card-title>{{ product.title }}</mat-card-title>
@@ -19,7 +19,15 @@
         <mat-card-content>
           <p>{{ product.description }}</p>
         </mat-card-content>
+        <mat-card-actions>{{
+          product.price | currency : "USD" : "symbol"
+        }}</mat-card-actions>
       </mat-card>
     </div>
+    <mat-paginator
+      [length]="length"
+      [pageIndex]="pageIndex"
+      [pageSize]="pageSize"
+      (page)="onPageChange($event)"></mat-paginator>
   </div>
 </div>

@@ -3,18 +3,24 @@
   <a class="active" [routerLink]="['/products']">Products</a>
   <a class="active" [routerLink]="['/contact']">Contact</a>
   <a class="active" [routerLink]="['/cart']">
-    <mat-icon [routerLink]="['/cart']">add_shopping_cart</mat-icon>
-    <span class="badge">{{ totalQuantity }}</span>
+    <mat-icon matBadge="{{ totalQuantity }}" matBadgeColor="warn" [routerLink]="['/cart']">add_shopping_cart</mat-icon>
+    <span class="cdk-visually-hidden">
+      {{ totalQuantity }}
+    </span>
   </a>
   <div class="search-container">
     <form action="/action_page.php">
       <input
+        matInput
         type="text"
         placeholder="Search.."
         [(ngModel)]="enterSearchValue"
         name="search"
       />
-      <button (click)="emitSearchValue()" type="search">Search</button>
+      <button
+      mat-raised-button
+      color="primary"
+      class="btn-2" (click)="emitSearchValue()" type="search">Search</button>
     </form>
   </div>
 </div>

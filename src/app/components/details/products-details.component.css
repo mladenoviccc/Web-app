@@ -46,6 +46,12 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  border: 2px solid #ddd; /* Add a border around the wrapper */
+  padding: 20px;
+  box-sizing: border-box;
+  margin-left: 300px;
+  margin-right: 300px;
+  background-color: #ddd;
 }
 
 .property {

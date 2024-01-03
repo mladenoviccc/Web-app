@@ -15,6 +15,4 @@ export class ApiService {
   public getProduct(id: string | null): Observable<any> {
     return this.httpClient.get(`${this.apiUrl}/products/${id}`);
   }
-
-
 }

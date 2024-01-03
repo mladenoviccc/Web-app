@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -7,4 +8,10 @@ import { Component, OnInit } from "@angular/core";
 })
 export class HomePageComponent  {
   public pageTitle = 'Home Page';
+
+  constructor(private router: Router) { }
+
+  navigate () {
+    this.router.navigate(['/contact']);
+  }
 }

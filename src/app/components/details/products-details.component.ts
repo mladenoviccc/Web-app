@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Route, Router } from "@angular/router";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { ActivatedRoute } from "@angular/router";
 import { ApiService } from "src/app/services/api.service";
 import { CartService } from "src/app/services/cart.service";
 
@@ -16,7 +17,7 @@ export class ProductsDetailsComponent implements OnInit {
   message: string | null = '';
   showMessage: boolean = false;
 
-  constructor(private apiService: ApiService, private route:ActivatedRoute,  private cartService: CartService, private router:Router) {}
+  constructor(private apiService: ApiService, private route:ActivatedRoute,  private cartService: CartService, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -40,10 +41,10 @@ export class ProductsDetailsComponent implements OnInit {
   }
 
   addToCart() {
-    this.apiService.getProduct(this.id).subscribe((resp) => {
-      this.product = resp;
-      this.cartService.addToCart(this.product);
-      console.log('Product added to cart:', this.product);
-    })
+    this.cartService.addToCart(this.product);
+    this.snackBar.open(`${this.product.title} was added to the cart!`, '', {
+      duration: 3000,
+    });
+    console.log('Product added to cart:', this.product);
   }
 }

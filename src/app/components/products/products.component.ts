@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { PageEvent } from "@angular/material/paginator";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ApiService } from "src/app/services/api.service";
 
@@ -10,6 +11,10 @@ export default class ProductsComponent implements OnInit {
   products: any = [];
   searchedValue: string = '';
   showNoResults = false;
+  pageIndex: number = 0;
+  pageSize: number = 6;
+  length: number = 0;
+  productsPage: any = [];
 
   constructor(private apiService: ApiService, private router:Router, private route: ActivatedRoute) {}
 
@@ -28,25 +33,33 @@ export default class ProductsComponent implements OnInit {
           } else {
             this.showNoResults = false;
           }
+          this.length = this.products.length;
+          this.pageIndex = 0;
+          this.productsPage = this.products.slice(0, this.pageSize)
           })
         });
       }
 
+      onPageChange(event: PageEvent) {
+        const startIndex = event.pageIndex * event.pageSize;
+        const endIndex = startIndex + event.pageSize;
+        this.productsPage = this.products.slice(startIndex, endIndex);
+      }
 
   navigate (id: number) {
     this.router.navigate([`products/${id}`]);
   }
 
   sortByLowToHigh() {
-    this.products.sort((a: any, b: any) => a.price - b.price);
+    this.productsPage.sort((a: any, b: any) => a.price - b.price);
   }
 
   sortByHighToLow() {
-    this.products.sort((a: any, b: any) => b.price - a.price);
+    this.productsPage.sort((a: any, b: any) => b.price - a.price);
   }
 
   sortAlphabetically() {
-    this.products.sort((a: any, b: any) => {
+    this.productsPage.sort((a: any, b: any) => {
       const titleA = a.title.toLowerCase();
       const titleB = b.title.toLowerCase();
       if (titleA < titleB) {
